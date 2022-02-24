@@ -10,3 +10,7 @@ System overview:
 Our product is a study room booking app specifically for Fenwick Library located on the George Mason University campus. Our main feature is a button that allows users to notify others if the room is empty early. This way, no time is wasted and the study rooms are being utilized to their ability. Users can also filter available rooms by time and date. All they need to do is sign in with their GMU email!
 
 Tasks:
+
+  - Login/Logout - account system
+  - Send notifications to users
+  - User interface
