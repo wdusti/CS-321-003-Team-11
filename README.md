@@ -3,6 +3,7 @@
 Weekly meeting: 6:00 PM, Thursdays
 
 Team leader: Manasi Mudumbai
+
 Members: Nikita Alluri, Manasi Mudumbai, Emil Natour, Dustin Wong
 
 System overview:
