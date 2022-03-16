@@ -3,6 +3,7 @@ let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask
 
 func createAcc(id: String, pass: String) -> Void {
     //Function will write to a file, file stores all account information > server replacement
+    //This function should work if you can get past the missing modules from importing
 
     let str = id + " " + pass + " 1,"
     str.write(to: path)    //, atomically: true, encoding: String.encoding.utf8)
