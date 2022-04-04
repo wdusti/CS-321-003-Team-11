@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeScreen.swift
 //  GMUBooking
 //
 //  Created by Emil Natour on 3/22/22.
@@ -50,7 +50,7 @@ class HomeScreen: UIViewController {
     }
     
     func invalidUsername(_ value: String) -> String?{
-        let regularExpression = "[A-Z0-9a-z._%+-]+@[gmu]+\\.[edu]{2,64}"
+        let regularExpression = "[A-Z0-9a-z._%+-]+@[gmu]{3}+\\.[edu]{3}"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regularExpression)
         if !predicate.evaluate(with: value){
             return "Invalid Username, must be GMU email!"
