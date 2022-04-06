@@ -1,7 +1,9 @@
-// mock data taken from GMU Fenwick Library wesbite as of April 7th, 2022
-// Created by Nikita Alluri
+{
+	"data origin": "mock data taken from GMU Fenwick Library wesbite as of April 7th, 2022",
+	"data contents": "rooms for up to 4 people (12 rooms total)",
+	"author": "Nikita Alluri"
+}
 
-// Rooms for up to 4 people (12 rooms)
 {
     "roomNumber": 2004,
     "availableStartTimes": ["8:00", "8:30", "13:30", "18:00", "18:30", 
