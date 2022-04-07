@@ -16,7 +16,8 @@ private let JSONdata = try Data(contentsOf: path)
 private let decoder = JSONDecoder()
 private let data = try decoder.decode([openModel].self, from: JSONdata)
 
-//Function to get rooms open on the given date and startTime
+//Function is called after getting date and startTime from user through UI
+//returns end times
 func getOpen(date: Int, startTime: Int) -> [openModel] {
     //mutable array of openModel to store all possible bookings
     //tldr; dynamic array list
@@ -24,11 +25,19 @@ func getOpen(date: Int, startTime: Int) -> [openModel] {
     
     //loop appending possible bookings
     for i in data {
-        //adds the openModel if the date has the given startTime
+        //appends an array of openModels
         if(i.date == date && i.slots.contains(startTime)) {
-            ret.append(i)
+            //filters slots to only greater than the startTime
+            let temp = openModel(date: date, roomNumber: i.roomNumber, slots: i.slots.filter {$0 > startTime})
+            ret.append(temp)
         }
     }
     
     return ret
+    /*
+     What to do with this. In the UI, you will need to display the room number and the end times.
+     The room number will be given as the return is an array of openModel.
+     The end times are the slots of the returned struct.
+     */
 }
+
