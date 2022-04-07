@@ -28,7 +28,7 @@ func getOpen(date: Int, startTime: Int) -> [openModel] {
         //appends an array of openModels
         if(i.date == date && i.slots.contains(startTime)) {
             //filters slots to only greater than the startTime
-            let temp = openModel(date: date, roomNumber: i.roomNumber, slots: i.slots.filter {$0 > startTime})
+            let temp = openModel(date: date, roomNumber: i.roomNumber, slots: i.slots.filter {$0 > startTime} && i.slots.contains($0 - 15)})
             ret.append(temp)
         }
     }
