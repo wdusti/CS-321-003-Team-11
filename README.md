@@ -16,5 +16,6 @@ Tasks:
   - User interface
 
 Links to Resources:
-  -https://www.appypie.com/filemanager-files-swift-how-to/#:~:text=Reading%20a%20File%20with%20Swift%201%20Get%20Default,Path%20Component.%20...%204%20Read%20From%20File.%20
-  -https://youtu.be/f4ZsDTsj0No
+
+https://www.appypie.com/filemanager-files-swift-how-to/#:~:text=Reading%20a%20File%20with%20Swift%201%20Get%20Default,Path%20Component.%20...%204%20Read%20From%20File.%20
+https://youtu.be/f4ZsDTsj0No
