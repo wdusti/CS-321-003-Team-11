@@ -7,18 +7,20 @@ struct openModel: Decodable {
 }
 
 //Finds the file in the document directory
-private let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("openData.json")
+private let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+private let path = directory!.appendingPathComponent("openData.json")
 
-//Gets the contents of the file as Data
-private let JSONdata = try Data(contentsOf: path)
-
-//Creates built in decoder and decodes the data into the protocol defined by openModel
+//Creates built in decoder and encoder used to convert data into JSON format
 private let decoder = JSONDecoder()
-private let data = try decoder.decode([openModel].self, from: JSONdata)
+private let encoder = JSONEncoder()
 
 //Function is called after getting date and startTime from user through UI
 //returns end times
 func getOpen(date: Int, startTime: Int) -> [openModel] {
+    //decodes JSON data
+    let JSONdata = try Data(contentsOf: path)
+    let data = try decoder.decode([openModel].self, from: JSONdata)
+    
     //mutable array of openModel to store all possible bookings
     //tldr; dynamic array list
     var ret: [openModel] = []
@@ -43,3 +45,19 @@ func getOpen(date: Int, startTime: Int) -> [openModel] {
      */
 }
 
+//function to add a booked room back into open
+//alternate implementation - bookedModel as input param
+func addtoOpen(date: Int, roomNumber: String, slots: [Int]) -> Void {
+    //decode JSON data
+    let JSONdata = try Data(contentsOf: path)
+    var data = try decoder.decode([openModel].self, from: JSONdata)
+    
+    //find JSON object matching given date and room number
+    let index = data.firstIndex(where: {$0.date == date && $0.roomNumber == roomNumber})
+    //combines 'booked' slots and open slots
+    data[index!].slots.append(contentsOf: slots)
+    
+    //writing to file
+    let str = try encoder.encode(data)
+    try str.write(to: path)
+}
