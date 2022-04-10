@@ -61,3 +61,20 @@ func addtoOpen(date: Int, roomNumber: String, slots: [Int]) -> Void {
     let str = try encoder.encode(data)
     try str.write(to: path)
 }
+
+//function to remove a period from open
+//to be used in conjunction with with booking a room
+func removefromOpen(date: Int, roomNumber: String, startTime: Int, endTime: Int) -> Void {
+    //decode JSON data
+    let JSONdata = try Data(contentsOf: path)
+    var data = try decoder.decode([openModel].self, from: JSONdata)
+    
+    //find JSON object matching given date and room number
+    let index = data.firstIndex(where: {$0.date == date && $0.roomNumber == roomNumber})
+    //removing a block of time
+    let period = data[index!].slots.removeAll(where: {$0 >= startTime && $0 <= endTime})
+    
+    //writing to file
+    let str = try encoder.encode(data)
+    try str.write(to: path)
+}
