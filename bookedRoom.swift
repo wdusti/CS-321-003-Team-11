@@ -40,3 +40,17 @@ func addtoBooked(date: Int, roomNumber: String, uname: String, slot: [Int]) -> V
     let str = try encoder.encode(data)
     try str.write(to: path)
 }
+
+//function to cancel a booked time slot
+func removefromBooked(date: Int, roomNumber: String, uname: String, slot: [Int]) -> Void {
+    //read contents of JSON file
+    let JSONdata = try Date(contentsOf: path)
+    var data = try decoder.decode([bookedModel].self, from: JSONdata)
+    
+    //removes bookedModel from array of JSON objects
+    data.remove(bookedModel(date: date, roomNumber: roomNumber, uname: uname, slot: slot))
+    
+    //writes array of JSON objects to file
+    let str = try encoder.encode(data)
+    try str.write(to: path)
+}
