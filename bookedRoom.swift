@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct bookedModel: Decodable {
+struct bookedModel: Codable {
     let date: Int
     let roomNumber: String
     let uname: String
