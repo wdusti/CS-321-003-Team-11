@@ -48,7 +48,7 @@ func removefromBooked(date: Int, roomNumber: String, uname: String, slot: [Int])
     var data = try decoder.decode([bookedModel].self, from: JSONdata)
     
     //removes bookedModel from array of JSON objects
-    data.remove(bookedModel(date: date, roomNumber: roomNumber, uname: uname, slot: slot))
+    data.removeAll(where: {$0 == bookedModel(date: date, roomNumber: roomNumber, uname: uname, slot: slot)})
     
     //writes array of JSON objects to file
     let str = try encoder.encode(data)
