@@ -2,3 +2,4 @@ https://www.appypie.com/filemanager-files-swift-how-to/#:~:text=Reading%20a%20Fi
 https://youtu.be/f4ZsDTsj0No
 https://programmingwithswift.com/how-to-save-json-to-file-with-swift/
 https://developer.apple.com/documentation/swift/array
+https://programmingwithswift.com/create-a-swift-framework/
