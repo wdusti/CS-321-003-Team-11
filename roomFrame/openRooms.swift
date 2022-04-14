@@ -17,7 +17,7 @@ public class openRooms {
     private let encoder = JSONEncoder()
 
     //initialization
-    public init() throws {
+    public init() {
         //temporary URL for documents - replace dwong with USER
         self.directory = URL(string: "file:///Users/dwong/Documents")! //= FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         self.path = directory.appendingPathComponent("openData.json")
