@@ -1,17 +1,16 @@
-import Foundation
 import SwiftUI
 
-struct openModel: Codable {
-    let date: Int
-    let roomNumber: String
-    var slots: [Int]
+public struct openModel: Codable {
+    public let date: Int
+    public let roomNumber: String
+    public var slots: [Int]
 }
 
 public class openRooms {
     
-    //Finds the file in the document directory
-    private var directory: URL //= FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-    private var path: URL //= directory!.appendingPathComponent("openData.json")
+    //URLs for finding the JSON files
+    private var directory: URL
+    private var path: URL
 
     //Creates built in decoder and encoder used to convert data into JSON format
     private let decoder = JSONDecoder()
@@ -19,17 +18,17 @@ public class openRooms {
 
     //initialization
     public init() throws {
-        self.directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        print(self.directory)
+        //temporary URL for documents - replace dwong with USER
+        self.directory = URL(string: "file:///Users/dwong/Documents")! //= FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         self.path = directory.appendingPathComponent("openData.json")
     }
     
     //Function is called after getting date and startTime from user through UI
     //returns end times
-    func getOpen(date: Int, startTime: Int) throws -> [openModel] {
+    public func getOpen(date: Int, startTime: Int) -> [openModel] {
         //decodes JSON data
-        let JSONdata = try Data(contentsOf: path)
-        let data = try decoder.decode([openModel].self, from: JSONdata)
+        let JSONdata = try! Data(contentsOf: path)
+        let data = try! decoder.decode([openModel].self, from: JSONdata)
     
         //mutable array of openModel to store all possible bookings
         //tldr; dynamic array list
@@ -48,19 +47,14 @@ public class openRooms {
         }
     
         return ret
-    /*
-    What to do with this. In the UI, you will need to display the room number and the end times.
-    The room number will be given as the return is an array of openModel.
-    The end times are the slots of the returned struct.
-    */
     }
 
     //function to add a booked room back into open
     //alternate implementation - bookedModel as input param
-    func addtoOpen(date: Int, roomNumber: String, slots: [Int]) throws -> Void {
+    public func addtoOpen(date: Int, roomNumber: String, slots: [Int]) -> Void {
         //decode JSON data
-        let JSONdata = try Data(contentsOf: path)
-        var data = try decoder.decode([openModel].self, from: JSONdata)
+        let JSONdata = try! Data(contentsOf: path)
+        var data = try! decoder.decode([openModel].self, from: JSONdata)
     
         //find JSON object matching given date and room number
         let index = data.firstIndex(where: {$0.date == date && $0.roomNumber == roomNumber})
@@ -68,16 +62,16 @@ public class openRooms {
         data[index!].slots.append(contentsOf: slots)
 
         //writing to file
-        let str = try encoder.encode(data)
-        try str.write(to: path)
+        let str = try! encoder.encode(data)
+        try! str.write(to: path)
     }
 
     //function to remove a period from open
     //to be used in conjunction with with booking a room
-    func removefromOpen(date: Int, roomNumber: String, startTime: Int, endTime: Int) throws -> [Int] {
+    public func removefromOpen(date: Int, roomNumber: String, startTime: Int, endTime: Int) -> [Int] {
         //decode JSON data
-        let JSONdata = try Data(contentsOf: path)
-        var data = try decoder.decode([openModel].self, from: JSONdata)
+        let JSONdata = try! Data(contentsOf: path)
+        var data = try! decoder.decode([openModel].self, from: JSONdata)
     
         //find JSON object matching given date and room number
         let index = data.firstIndex(where: {$0.date == date && $0.roomNumber == roomNumber})
@@ -87,8 +81,8 @@ public class openRooms {
         period.removeAll(where: {$0 < startTime && $0 > endTime})
     
         //writing to file
-        let str = try encoder.encode(data)
-        try str.write(to: path)
+        let str = try! encoder.encode(data)
+        try! str.write(to: path)
     
         return period
     }
