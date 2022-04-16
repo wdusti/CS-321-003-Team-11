@@ -10,6 +10,7 @@ import UIKit
 class SelectTime: UIViewController{
     @IBOutlet weak var dateTF: UITextField!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let datePicker = UIDatePicker()
@@ -20,7 +21,7 @@ class SelectTime: UIViewController{
         dateTF.inputView = datePicker
         dateTF.text = formatDate(date: Date())
         datePicker.minimumDate = Date()
-        datePicker.maximumDate = Date()
+        datePicker.maximumDate = Calendar.current.date(byAdding: .day, value: 14, to: Date())
     }
     
     @objc func dateChange(datePicker: UIDatePicker){
