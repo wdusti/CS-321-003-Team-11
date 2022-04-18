@@ -9,7 +9,7 @@ import UIKit
 
 class SelectTime: UIViewController{
     @IBOutlet weak var dateTF: UITextField!
-    
+    @IBOutlet weak var timeTF: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
