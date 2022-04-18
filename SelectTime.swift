@@ -15,6 +15,7 @@ class SelectTime: UIViewController{
         super.viewDidLoad()
         let datePicker = UIDatePicker()
         let timePicker = UIDatePicker()
+        
         datePicker.datePickerMode = .date
         datePicker.addTarget(self, action: #selector(dateChange(datePicker:)), for: UIControl.Event.valueChanged)
         datePicker.frame.size = CGSize(width: 0, height: 300)
@@ -29,7 +30,7 @@ class SelectTime: UIViewController{
         timePicker.preferredDatePickerStyle = .wheels
         timeTF.inputView = timePicker
         timeTF.text = formatTime(time: Date())
-        //timePicker.minimumTime = Date()
+        timePicker.minuteInterval = 30
     }
     
     @objc func dateChange(datePicker: UIDatePicker){
@@ -52,6 +53,4 @@ class SelectTime: UIViewController{
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: time)
     }
-    
-    
 }
