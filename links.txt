@@ -13,3 +13,4 @@ https://programmingwithswift.com/create-a-swift-framework/
 
 List view
 https://developer.apple.com/tutorials/swiftui/building-lists-and-navigation
+https://www.appcoda.com/swiftui-expandable-list-view/
