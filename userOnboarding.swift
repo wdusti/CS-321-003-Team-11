@@ -32,7 +32,7 @@ class userOnboarding: ObservableObject {
     func newUser(email: String, password: String) {
         auth.createUser(withEmail: email, password: password) { result, error in
 
-        guard resule != nil, error == nil else {
+        guard result != nil, error == nil else {
             return
         }
         // new user created successfully
