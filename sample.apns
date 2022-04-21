@@ -1,0 +1,9 @@
+{
+  "aps" : {
+    "alert": {
+      "title" : "Sample Push",
+      "body" : "Example push notification
+    },
+    "sound" : "default"
+  }
+}
