@@ -41,6 +41,9 @@ public class openRooms {
                 //filters slots to only greater than the startTime
                 let end = i.slots.filter {$0 > startTime && !i.slots.contains($0 + 15)}
                 let temp = openModel(date: date, roomNumber: i.roomNumber, slots: i.slots.filter {$0 > startTime && $0 < end.min()! + 15})
+                
+                temp.slots.append(startTime)
+                temp.slots.sort()
         
                 ret.append(temp)
             }
