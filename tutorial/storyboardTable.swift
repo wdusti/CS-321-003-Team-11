@@ -12,6 +12,8 @@ class TimeTableViewController: UITableViewController {
     
     var openTest: openRooms = openRooms()
     var arr: [openModel] = []
+    
+    public var end: Int = -1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,9 +41,12 @@ class TimeTableViewController: UITableViewController {
         var hour = (arr[indexPath.section].slots[indexPath.row] + 15) / 60
         let minute = (arr[indexPath.section].slots[indexPath.row] + 15) % 60
         
-        if hour > 12 {
-            hour = hour % 12
+        if hour >= 12 {
+            hour -= 12
             noon = "PM"
+        }
+        if hour == 0 {
+            hour += 12
         }
         
         cell.textLabel?.text = String(format: "Until %d:%.2d %@", hour, minute, noon)
@@ -50,9 +55,10 @@ class TimeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Fenwick Library Room: \(arr[section].roomNumber)"
+        return "Fenwick Library Room \(arr[section].roomNumber)"
     }
-
+    
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
