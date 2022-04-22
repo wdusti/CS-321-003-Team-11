@@ -51,7 +51,7 @@ class userOnboarding: ObservableObject {
         }
         // Email sent successfully. Prompts user to check email. 
         UserDefaults.standard.set(email, forKey: "Email")
-        self.showMessagePrompt("Check your GMU email to authenticate your identity")
+        self.showMessagePrompt("Check your GMU email to verify your identity.")
 
         // FIXME: check that link was clicked + verify that it was the right one
                                                                                                  
