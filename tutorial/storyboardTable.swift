@@ -16,13 +16,7 @@ class TimeTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         arr = openTest.getOpen(date: 1, startTime: 15)
-        
     }
 
     // MARK: - Table view data source
@@ -39,14 +33,24 @@ class TimeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TimeCell", for: indexPath)
+        
+        var noon: String = "AM"
 
-        cell.textLabel?.text = "Until \(arr[indexPath.section].slots[indexPath.row])" //"Section \(indexPath.section) Row \(indexPath.row)"
+        var hour = (arr[indexPath.section].slots[indexPath.row] + 15) / 60
+        let minute = (arr[indexPath.section].slots[indexPath.row] + 15) % 60
+        
+        if hour > 12 {
+            hour = hour % 12
+            noon = "PM"
+        }
+        
+        cell.textLabel?.text = String(format: "Until %d:%.2d %@", hour, minute, noon)
 
         return cell
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Roomnumber \(arr[section].roomNumber)"
+        return "Fenwick Library Room: \(arr[section].roomNumber)"
     }
 
     /*
