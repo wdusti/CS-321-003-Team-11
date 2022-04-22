@@ -35,6 +35,26 @@ class userOnboarding: ObservableObject {
         guard result != nil, error == nil else {
             return
         }
+                                                               
+        // sets values in action code settings struct
+        let actionCodeSettings = actionCodeSettings()
+        actionCodeSettings.handleCodeInApp = true
+        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+
+        // send email
+        Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
+
+        // error checking
+        if let error = error {
+            self.showMessagePrompt("There was an error in sending the email. Please try again.")
+            return
+        }
+        // Email sent successfully. Prompts user to check email. 
+        UserDefaults.standard.set(email, forKey: "Email")
+        self.showMessagePrompt("Check your GMU email to authenticate your identity")
+
+        // FIXME: check that link was clicked + verify that it was the right one
+                                                                                                 
         // new user created successfully
         self.loggedIn = true
         }
