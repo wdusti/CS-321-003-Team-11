@@ -15,3 +15,9 @@ List view
 https://developer.apple.com/tutorials/swiftui/building-lists-and-navigation
 https://www.appcoda.com/swiftui-expandable-list-view/
 https://youtu.be/aWL7W8SLfeo
+https://www.ralfebert.com/ios-examples/uikit/uitableviewcontroller/
+https://www.youtube.com/watch?v=ChjXkkqog5k&t=692s
+
+Segue
+https://www.appypie.com/pass-data-between-view-controllers-swift-how-to
+https://stackoverflow.com/questions/27604192/how-to-segue-programmatically-in-ios-using-swift
