@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class SelectTime: UIViewController{
     @IBOutlet weak var dateTF: UITextField!
@@ -41,9 +42,16 @@ class SelectTime: UIViewController{
         timeTF.text = formatTime(time: timePicker.date)
     }
     
+    @IBAction func continueSegue(_ sender: Any) {
+
+        let bookRoom2VC = BookRoom2()
+        bookRoom2VC.modalPresentationStyle = .fullScreen
+        bookRoom2VC.loadView()
+        self.present(bookRoom2VC, animated: true)
+    }
     func formatDate(date: Date) -> String{
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yyyy"
+        formatter.dateFormat = "EEEE MMMM dd yyyy"
         return formatter.string(from: date)
     }
     
@@ -53,4 +61,9 @@ class SelectTime: UIViewController{
         formatter.dateFormat = "HH:mm"
         return formatter.string(from: time)
     }
+    
+//    func dateToInt(date: Date){
+//        if(dateTF == "[Monday]+@[gmu]{3}
+//    }
+           
 }
