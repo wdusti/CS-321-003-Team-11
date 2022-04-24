@@ -18,11 +18,12 @@ class HomeScreen: UIViewController {
     
     @IBOutlet weak var loginButton: UIButton!
     
+
     override func viewDidLoad() {
-        super.viewDidLoad()
-        resetFields()
-    }
-    
+            super.viewDidLoad()
+            resetFields()
+        }
+
     func resetFields(){
         loginButton.isEnabled = false
         

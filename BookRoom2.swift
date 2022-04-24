@@ -13,15 +13,22 @@ import UIKit
 class BookRoom2: UIViewController, UITableViewDataSource {
     
     var tableView: UITableView!
+    static var cellReuseID: String = "Booking Cell"
     
+    
+    @objc func didTapBookRoomBtn(sender: UIButton) {
+        print("didTapBookRoomBtn!")
+    }
     func layoutView() {
         self.view.translatesAutoresizingMaskIntoConstraints = false
 //        self.view.backgroundColor = .orange
     }
     func layoutTableView() {
         tableView = UITableView(frame: CGRect(origin: .zero, size: CGSize(width: 10, height: 10)), style: .plain)
-        
         tableView.dataSource = self
+        tableView.register(UINib(nibName: "RoomTableViewCell", bundle: nil), forCellReuseIdentifier: BookRoom2.cellReuseID)
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 44.0
         //        tableView.backgroundColor = .green
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -34,8 +41,6 @@ class BookRoom2: UIViewController, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         layoutView()
-        
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         layoutTableView()
@@ -44,9 +49,9 @@ class BookRoom2: UIViewController, UITableViewDataSource {
         return 5
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: .default, reuseIdentifier: "bookRoomCell")
-        cell.textLabel?.text = "Booking Cell Title"
-        cell.detailTextLabel?.text = "Booking Details"
+//        var cell = UITableViewCell(style: .default, reuseIdentifier: "bookRoomCell")
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BookRoom2.cellReuseID, for: indexPath) as? RoomTableViewCell else { return UITableViewCell() }
+        cell.bookRoomLabel.addTarget(self, action: #selector(didTapBookRoomBtn(sender:)), for: .touchUpInside)
        return cell
     }
    
@@ -63,3 +68,8 @@ class BookRoom2: UIViewController, UITableViewDataSource {
 }
 
 
+extension BookRoom2: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+}
