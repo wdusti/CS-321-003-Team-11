@@ -37,9 +37,9 @@ class userOnboarding: ObservableObject {
         }
                                                                
         // sets values in action code settings struct
-        let actionCodeSettings = actionCodeSettings()
-        actionCodeSettings.handleCodeInApp = true
-        actionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
+        let ActionCodeSettings = actionCodeSettings()
+        ActionCodeSettings.handleCodeInApp = true
+        ActionCodeSettings.setIOSBundleID(Bundle.main.bundleIdentifier!)
 
         // send email
         Auth.auth().sendSignInLink(toEmail: email, actionCodeSettings: actionCodeSettings) { error in
