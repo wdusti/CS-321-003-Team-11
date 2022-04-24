@@ -61,8 +61,15 @@ extension SceneDelegate {
         content.sound = .default
         content.subtitle = "You're free to make your way over"
         
-        // notification trigger
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        var dateComponent = DateComponents()
+        dateComponent.hour = 12 // notification goes off at 12 pm
+        dateComponent.minute = 8 // 8 minutes after 12 the notification goes off
+        
+        // notification trigger based on a calendar event (this is if it's a daily thing for repeats
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponent, repeats: true)
+        
+        // notification trigger if we want 5 seconds after leaving the app
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
         
         // notification request
         let localNRequest = UNNotificationRequest(identifier: "local notification", content: content, trigger: trigger)
