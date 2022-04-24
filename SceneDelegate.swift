@@ -45,8 +45,36 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+        triggerLocalNotification(title: "Study Room Open!", body: "The room you booked is avaialable now.")
     }
 
 
 }
 
+extension SceneDelegate {
+    
+    private func triggerLocalNotification(title: String, body: String){
+        // notification content
+        let content = UNMutableNotificationContent()
+        content.body = body
+        content.title = title
+        content.sound = .default
+        content.subtitle = "You're free to make your way over"
+        
+        // notification trigger
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        
+        // notification request
+        let localNRequest = UNNotificationRequest(identifier: "local notification", content: content, trigger: trigger)
+        
+        // notification add
+        UNUserNotificationCenter.current().add(localNRequest) {(error) in 
+            if let error = error {
+                print("error: ", error.localizedDescription)
+            } else {
+                NSLog("Notification scheduled")
+            }
+    }
+    }
+    
+}
