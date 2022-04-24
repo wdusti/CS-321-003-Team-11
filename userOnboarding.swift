@@ -53,7 +53,14 @@ class userOnboarding: ObservableObject {
         UserDefaults.standard.set(email, forKey: "Email")
         self.showMessagePrompt("Check your GMU email to verify your identity.")
 
-        // FIXME: check that link was clicked + verify that it was the right one
+        // check that link was clicked + verify that it was the right one                                                                       
+        if Auth.auth().isSignIn(withEmailLink: link) {
+
+        Auth.auth().signIn(withEmail: email, link: self.link) { user, error in
+            self.showMessagePrompt(error.localizedDescription)
+            return
+        }
+    }
                                                                                                  
         // new user created successfully
         self.loggedIn = true
