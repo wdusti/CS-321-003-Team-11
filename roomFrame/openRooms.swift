@@ -8,9 +8,9 @@ public struct openModel: Codable {
 
 public class openRooms {
     
-    //URLs for finding the JSON files
-    private var directory: URL
-    private var path: URL
+    //Finds the file in the document directory
+    private var directory: URL //= FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+    private var path: URL //= directory!.appendingPathComponent("openData.json")
 
     //Creates built in decoder and encoder used to convert data into JSON format
     private let decoder = JSONDecoder()
@@ -18,15 +18,16 @@ public class openRooms {
 
     //initialization
     public init() {
-        //temporary URL for documents - replace dwong with USER
-        self.directory = URL(string: "file:///Users/dwong/Documents")! //= FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        self.directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         self.path = directory.appendingPathComponent("openData.json")
+        print(self.path)
     }
     
     //Function is called after getting date and startTime from user through UI
     //returns end times
     public func getOpen(date: Int, startTime: Int) -> [openModel] {
         //decodes JSON data
+        print(path)
         let JSONdata = try! Data(contentsOf: path)
         let data = try! decoder.decode([openModel].self, from: JSONdata)
     
@@ -40,11 +41,12 @@ public class openRooms {
             if(i.date == date && i.slots.contains(startTime)) {
                 //filters slots to only greater than the startTime
                 let end = i.slots.filter {$0 > startTime && !i.slots.contains($0 + 15)}
-                let temp = openModel(date: date, roomNumber: i.roomNumber, slots: i.slots.filter {$0 > startTime && $0 < end.min()! + 15})
+                var temp = openModel(date: date, roomNumber: i.roomNumber, slots: i.slots.filter {$0 > startTime && $0 < end.min()! + 15})
                 
                 temp.slots.append(startTime)
                 temp.slots.sort()
-        
+                
+                print(temp)
                 ret.append(temp)
             }
         }
@@ -54,7 +56,7 @@ public class openRooms {
 
     //function to add a booked room back into open
     //alternate implementation - bookedModel as input param
-    public func addtoOpen(date: Int, roomNumber: String, slots: [Int]) -> Void {
+    func addtoOpen(date: Int, roomNumber: String, slots: [Int]) -> Void {
         //decode JSON data
         let JSONdata = try! Data(contentsOf: path)
         var data = try! decoder.decode([openModel].self, from: JSONdata)
@@ -71,7 +73,7 @@ public class openRooms {
 
     //function to remove a period from open
     //to be used in conjunction with with booking a room
-    public func removefromOpen(date: Int, roomNumber: String, startTime: Int, endTime: Int) -> [Int] {
+    func removefromOpen(date: Int, roomNumber: String, startTime: Int, endTime: Int) -> [Int] {
         //decode JSON data
         let JSONdata = try! Data(contentsOf: path)
         var data = try! decoder.decode([openModel].self, from: JSONdata)
