@@ -6,7 +6,7 @@ public struct openModel: Codable {
     public var slots: [Int]
 }
 
-public class openRooms {
+public class OpenRooms {
     
     //URLs for finding the JSON files
     private var directory: URL
@@ -18,23 +18,15 @@ public class openRooms {
 
     //initialization
     public init() {
-        //temporary URL for documents - replace dwong with USER
-        
-        
-//        self.directory = URL(string: "file:///Users/dwong/Documents")! //= FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        
-        
-//        if let dir = URL(string: "file:///Users/dwong/Documents") {
-//            self.directory = dir
-//            self.path = directory.appendingPathComponent("openData.json")
-//        } else {
-//            guard let path = Bundle.main.path(forResource: "openData", ofType: "json") else { return }
-//            let relativePath = URL(fileURLWithPath: path)
-//            self.path = relativePath
-//            self.directory = relativePath //possible redundancy
-//        }
-        self.path = URL(fileURLWithPath: "")
-        self.directory = URL(fileURLWithPath: "")
+        if let relativePath = Bundle.main.path(forResource: "openData", ofType: "json") {
+                let relativePathUrl = URL(fileURLWithPath: relativePath)
+                self.path = relativePathUrl
+                self.directory = relativePathUrl //possible redundancy
+        } else {
+                self.path = URL(fileURLWithPath: "")
+                self.directory = URL(fileURLWithPath: "")
+                #warning("this line should not be triggered")
+            }
     }
     
     //Function is called after getting date and startTime from user through UI

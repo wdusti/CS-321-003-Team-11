@@ -43,8 +43,8 @@ class SelectTime: UIViewController{
     }
     
     @IBAction func continueSegue(_ sender: Any) {
-
-        let bookRoom2VC = BookRoom2()
+        let openRoomsAry = OpenRooms().getOpen(date: 1, startTime: 1200)
+        let bookRoom2VC = BookRoom2ViewController(openRooms: openRoomsAry)
         bookRoom2VC.modalPresentationStyle = .fullScreen
         bookRoom2VC.loadView()
         self.present(bookRoom2VC, animated: true)

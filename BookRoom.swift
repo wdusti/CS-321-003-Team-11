@@ -57,8 +57,8 @@ class BookRoom: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "BookRoomToConfirm"){
-            let destinationVC = segue.destination as? Confirm
-            destinationVC?.roomNumber = roomNumber
+            let destinationVC = segue.destination as? ConfirmViewController
+            destinationVC?.roomNumber = "\(roomNumber)"
         }
     }
     

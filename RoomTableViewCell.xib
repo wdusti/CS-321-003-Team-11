@@ -9,11 +9,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Booking Cell" rowHeight="202" id="ebd-ug-6tR" customClass="RoomTableViewCell" customModule="GMUBooking" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="455" height="202"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="BookingCell" rowHeight="251" id="ebd-ug-6tR" customClass="RoomTableViewCell" customModule="GMUBooking" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="455" height="251"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ebd-ug-6tR" id="A2X-5A-kzC">
-                <rect key="frame" x="0.0" y="0.0" width="455" height="202"/>
+                <rect key="frame" x="0.0" y="0.0" width="455" height="251"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Room Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9CE-fA-n6C">
@@ -29,7 +29,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Until:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1jY-bD-29h">
                         <rect key="frame" x="20" y="106" width="40" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="I75-y0-aiJ"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="ydA-zo-zUE"/>
                             <constraint firstAttribute="height" constant="21" id="zv6-cH-B6Q"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -62,32 +62,45 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day Of Week" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTv-Vb-8TK">
+                        <rect key="frame" x="20" y="153" width="99" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="LW6-C0-ofW"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="99" id="vqJ-hS-Gv0"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="YTv-QG-oFr" firstAttribute="leading" secondItem="9CE-fA-n6C" secondAttribute="trailing" constant="23" id="2Jf-cS-one"/>
+                    <constraint firstItem="1jY-bD-29h" firstAttribute="centerY" secondItem="rWG-SQ-KCC" secondAttribute="centerY" id="61h-tC-OMd"/>
                     <constraint firstItem="rWG-SQ-KCC" firstAttribute="leading" secondItem="1jY-bD-29h" secondAttribute="trailing" constant="17" id="Af9-Pt-XVG"/>
                     <constraint firstItem="9CE-fA-n6C" firstAttribute="top" secondItem="A2X-5A-kzC" secondAttribute="top" constant="36" id="BTq-0D-r46"/>
                     <constraint firstAttribute="bottom" secondItem="1jY-bD-29h" secondAttribute="bottom" constant="75" id="Byz-HX-VxS"/>
-                    <constraint firstItem="rWG-SQ-KCC" firstAttribute="top" secondItem="9CE-fA-n6C" secondAttribute="bottom" constant="49" id="EpI-jV-EGt"/>
                     <constraint firstItem="1jY-bD-29h" firstAttribute="leading" secondItem="A2X-5A-kzC" secondAttribute="leading" constant="20" symbolic="YES" id="Fi3-lK-Cpf"/>
-                    <constraint firstItem="EsK-cE-dKf" firstAttribute="leading" relation="lessThanOrEqual" secondItem="rWG-SQ-KCC" secondAttribute="trailing" constant="141" id="Pdc-v2-nzn"/>
+                    <constraint firstItem="CTv-Vb-8TK" firstAttribute="leading" secondItem="1jY-bD-29h" secondAttribute="leading" id="S03-JL-MOc"/>
                     <constraint firstItem="EsK-cE-dKf" firstAttribute="leading" relation="lessThanOrEqual" secondItem="9CE-fA-n6C" secondAttribute="trailing" constant="125" id="TK9-lC-o61"/>
                     <constraint firstItem="1jY-bD-29h" firstAttribute="top" secondItem="9CE-fA-n6C" secondAttribute="bottom" constant="49" id="Tr3-PZ-37r"/>
                     <constraint firstItem="YTv-QG-oFr" firstAttribute="top" secondItem="A2X-5A-kzC" secondAttribute="top" constant="36" id="XDQ-ty-XYe"/>
                     <constraint firstItem="EsK-cE-dKf" firstAttribute="top" secondItem="A2X-5A-kzC" secondAttribute="top" constant="70" id="ZMs-SZ-Vqj"/>
+                    <constraint firstAttribute="bottom" secondItem="CTv-Vb-8TK" secondAttribute="bottom" constant="28" id="e7s-f3-Vg2"/>
                     <constraint firstAttribute="trailing" secondItem="EsK-cE-dKf" secondAttribute="trailing" constant="69" id="lnA-0f-xJw"/>
                     <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="YTv-QG-oFr" secondAttribute="trailing" constant="255" id="lvo-qy-0bt"/>
-                    <constraint firstAttribute="trailing" secondItem="1jY-bD-29h" secondAttribute="trailing" constant="395" id="rxM-Hc-FsT"/>
                     <constraint firstItem="9CE-fA-n6C" firstAttribute="leading" secondItem="A2X-5A-kzC" secondAttribute="leading" constant="20" symbolic="YES" id="t0R-Pl-7ap"/>
-                    <constraint firstAttribute="bottom" secondItem="EsK-cE-dKf" secondAttribute="bottom" constant="82" id="wHS-7I-ZNs"/>
+                    <constraint firstItem="CTv-Vb-8TK" firstAttribute="top" secondItem="rWG-SQ-KCC" secondAttribute="bottom" constant="26" id="tDo-JP-K67"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="bookRoomLabel" destination="EsK-cE-dKf" id="nkg-sO-IeF"/>
+                <outlet property="bookRoomBtn" destination="EsK-cE-dKf" id="nkg-sO-IeF"/>
+                <outlet property="dayOfWeekLabel" destination="CTv-Vb-8TK" id="bfW-oJ-6Ug"/>
                 <outlet property="roomNumberLabel" destination="YTv-QG-oFr" id="Dmx-qP-ehc"/>
                 <outlet property="untilLabel" destination="rWG-SQ-KCC" id="id1-kw-g2k"/>
+                <outlet property="untilLabelKey" destination="1jY-bD-29h" id="N06-vZ-WqG"/>
+                <outlet property="untilLabelKeyTopConstraint" destination="Tr3-PZ-37r" id="YiW-Se-SVc"/>
             </connections>
-            <point key="canvasLocation" x="-351.44927536231887" y="4.6875"/>
+            <point key="canvasLocation" x="-351.44927536231887" y="21.09375"/>
         </tableViewCell>
     </objects>
     <resources>
